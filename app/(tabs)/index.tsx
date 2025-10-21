@@ -157,10 +157,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f1f5f9',
+    backgroundColor: '#121212',
   },
   header: {
-    backgroundColor: '#4f46e5',
+    backgroundColor: '#1E1E1E',
     height: 200,
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
   },
   headerText: {
-    color: 'white',
+    color: '#FFD700',
     fontSize: 28,
     fontWeight: '800',
     letterSpacing: 1,
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     height: 140,
     borderRadius: 9999,
     borderWidth: 4,
-    borderColor: '#f1f5f9',
+    borderColor: '#121212',
   },
   textCenter: {
     alignItems: 'center',
@@ -195,11 +195,11 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 32,
     fontWeight: '800',
-    color: '#111827',
+    color: '#FFD700',
   },
   title: {
     fontSize: 18,
-    color: '#4338ca',
+    color: '#A9A9A9',
     fontWeight: '600',
     marginTop: 4,
   },
@@ -208,11 +208,11 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   card: {
-    backgroundColor: 'white',
+    backgroundColor: '#1E1E1E',
     borderRadius: 16,
     padding: 20,
     borderWidth: 1,
-    borderColor: '#e5e7eb',
+    borderColor: 'rgba(255, 215, 0, 1.00)',
     shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 6,
@@ -233,32 +233,32 @@ const styles = StyleSheet.create({
   },
   contactLabel: {
     fontSize: 12,
-    color: '#6b7280',
+    color: '#A9A9A9',
   },
   contactValue: {
     fontSize: 16,
-    color: '#111827',
+    color: '#FFD700',
     fontWeight: '500',
     textDecorationLine: 'underline',
   },
   sectionTitle: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#111827',
+    color: '#FFD700',
     borderBottomWidth: 1,
-    borderBottomColor: '#c7d2fe',
+    borderBottomColor: '#B8860B',
     paddingBottom: 8,
     marginBottom: 8,
   },
   bio: {
     fontSize: 15,
-    color: '#374151',
+    color: '#A9A9A9',
     lineHeight: 22,
   },
   sectionHeader: {
     fontSize: 26,
     fontWeight: '700',
-    color: '#111827',
+    color: '#FFD700',
     textAlign: 'center',
     marginBottom: 16,
   },

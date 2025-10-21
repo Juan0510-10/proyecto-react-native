@@ -31,12 +31,12 @@ export function ProjectCard({ emoji, title, description, tags }: ProjectCardProp
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(30, 30, 30, 1.00)',
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#e5e7eb',
+    borderColor: 'rgba(255, 215, 0, 1.00)',
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 6,
@@ -54,10 +54,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#111827',
+    color: '#FFD700',
   },
   description: {
-    color: '#4b5563',
+    color: '#A9A9A9',
     fontSize: 15,
     marginBottom: 12,
     lineHeight: 22,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   tag: {
-    backgroundColor: '#e0e7ff',
+    backgroundColor: '#FFD700',
     borderRadius: 20,
     paddingHorizontal: 10,
     paddingVertical: 4,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   tagText: {
-    color: '#4338ca',
+    color: '#000',
     fontSize: 13,
     fontWeight: '500',
   },
