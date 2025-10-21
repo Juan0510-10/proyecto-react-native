@@ -1,98 +1,265 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from 'react';
+import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet } from 'react-native';
+import { SkillCard } from '@/components/SkillCard';
+import { ProjectCard } from '@/components/ProjectCard';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+// ===================================
+// 1. Interfaces y Datos
+// ===================================
+interface ContactInfo {
+  icon: string;
+  label: string;
+  value: string;
+}
 
-export default function HomeScreen() {
+interface Skill {
+  id: string;
+  emoji: string;
+  name: string;
+}
+
+interface Project {
+  id: string;
+  emoji: string;
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+const personalInfo = {
+  name: 'Juand Diego Rodríguez León',
+  title: 'Desarrollador Full-Stack',
+  avatar: require('@/assets/images/avatar.jpg'),
+  bio: 'Apasionado por la creación de soluciones tecnológicas innovadoras. Experiencia en el desarrollo de aplicaciones web y móviles, con un fuerte enfoque en la experiencia de usuario y el rendimiento. Buscando siempre aprender y aplicar nuevas tecnologías para resolver problemas complejos.',
+};
+
+const contacts: ContactInfo[] = [
+  { icon: '📧', label: 'Email', value: 'juandisrod2019@gmail.com' },
+  { icon: '📍', label: 'Ubicación', value: 'Bogotá, Colombia' },
+  { icon: '🔗', label: 'GitHub', value: 'https://github.com/Juan0510-10' },
+  { icon: '💼', label: 'LinkedIn', value: 'https://linkedin.com/in/juand-diego' },
+];
+
+const skills: Skill[] = [
+  { id: '1', emoji: '⚛️', name: 'React & React Native' },
+  { id: '2', emoji: '📘', name: 'TypeScript' },
+  { id: '3', emoji: '🟢', name: 'Node.js' },
+  { id: '4', emoji: '🐍', name: 'Python' },
+  { id: '5', emoji: '☁️', name: 'Bases de Datos SQL & NoSQL' },
+  { id: '6', emoji: '🐳', name: 'Docker' },
+  { id: '7', emoji: '🎨', name: 'UI/UX Design' },
+  { id: '8', emoji: '⚙️', name: 'CI/CD' },
+];
+
+const projects: Project[] = [
+  {
+    id: '1',
+    emoji: '🛒',
+    title: 'E-commerce Platform',
+    description: 'Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración de productos.',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB'],
+  },
+  {
+    id: '2',
+    emoji: '📊',
+    title: 'Dashboard de Analíticas',
+    description: 'Dashboard interactivo para la visualización de datos en tiempo real, utilizando gráficos y tablas dinámicas.',
+    tags: ['React', 'D3.js', 'TypeScript', 'Firebase'],
+  },
+  {
+    id: '3',
+    emoji: '🤖',
+    title: 'Chatbot de Soporte',
+    description: 'Chatbot inteligente para atención al cliente, integrado con servicios de procesamiento de lenguaje natural (NLP).',
+    tags: ['Python', 'Dialogflow', 'Flask'],
+  },
+];
+
+// ===================================
+// 🖥️ Componente Principal
+// ===================================
+export default function App() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerText}>MI APP PERSONAL</Text>
+        </View>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        {/* Avatar y Nombre */}
+        <View style={styles.profileContainer}>
+          <Image source={personalInfo.avatar} style={styles.avatar} />
+          <View style={styles.textCenter}>
+            <Text style={styles.name}>{personalInfo.name}</Text>
+            <Text style={styles.title}>{personalInfo.title}</Text>
+          </View>
+        </View>
+
+        {/* Contactos */}
+        <View style={styles.section}>
+          <View style={styles.card}>
+            {contacts.map((contact, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.contactRow,
+                  index < contacts.length - 1 && { marginBottom: 16 },
+                ]}
+              >
+                <Text style={styles.contactIcon}>{contact.icon}</Text>
+                <View style={styles.contactTextContainer}>
+                  <Text style={styles.contactLabel}>{contact.label}</Text>
+                  <Text style={styles.contactValue}>{contact.value}</Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* Sobre Mí */}
+        <View style={styles.section}>
+          <View style={styles.card}>
+            <Text style={styles.sectionTitle}>📖 Sobre Mí</Text>
+            <Text style={styles.bio}>{personalInfo.bio}</Text>
+          </View>
+        </View>
+
+        {/* Habilidades */}
+        <View style={styles.section}>
+          <Text style={styles.sectionHeader}>💡 Mis Habilidades</Text>
+          {skills.map((skill) => (
+            <SkillCard key={skill.id} emoji={skill.emoji} name={skill.name} />
+          ))}
+        </View>
+
+        {/* Proyectos */}
+        <View style={[styles.section, { paddingBottom: 40 }]}>
+          <Text style={styles.sectionHeader}>🚀 Mis Proyectos</Text>
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              emoji={project.emoji}
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+            />
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
+// ===================================
+// 🎨 ESTILOS
+// ===================================
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#f1f5f9',
+  },
+  header: {
+    backgroundColor: '#4f46e5',
+    height: 200,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    paddingBottom: 48,
+    shadowColor: '#000',
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 6,
+  },
+  headerText: {
+    color: 'white',
+    fontSize: 28,
+    fontWeight: '800',
+    letterSpacing: 1,
+  },
+  profileContainer: {
+    alignItems: 'center',
+    marginTop: -80,
+    marginBottom: 16,
+  },
+  avatar: {
+    width: 140,
+    height: 140,
+    borderRadius: 9999,
+    borderWidth: 4,
+    borderColor: '#f1f5f9',
+  },
+  textCenter: {
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  name: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: '#111827',
+  },
+  title: {
+    fontSize: 18,
+    color: '#4338ca',
+    fontWeight: '600',
+    marginTop: 4,
+  },
+  section: {
+    paddingHorizontal: 20,
+    marginTop: 16,
+  },
+  card: {
+    backgroundColor: 'white',
+    borderRadius: 16,
+    padding: 20,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+  },
+  contactRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
+  contactIcon: {
+    fontSize: 24,
+    marginRight: 16,
+    width: 28,
+    textAlign: 'center',
+  },
+  contactTextContainer: {
+    flex: 1,
+  },
+  contactLabel: {
+    fontSize: 12,
+    color: '#6b7280',
+  },
+  contactValue: {
+    fontSize: 16,
+    color: '#111827',
+    fontWeight: '500',
+    textDecorationLine: 'underline',
+  },
+  sectionTitle: {
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#111827',
+    borderBottomWidth: 1,
+    borderBottomColor: '#c7d2fe',
+    paddingBottom: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  bio: {
+    fontSize: 15,
+    color: '#374151',
+    lineHeight: 22,
+  },
+  sectionHeader: {
+    fontSize: 26,
+    fontWeight: '700',
+    color: '#111827',
+    textAlign: 'center',
+    marginBottom: 16,
   },
 });
